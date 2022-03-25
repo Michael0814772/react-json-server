@@ -1,34 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  const { register, handleSubmit } = useForm();
-  const { loading, error, data } = useFetch("http://localhost:8000/posts/");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const { loading, error } = useFetch("http://localhost:8000/posts/");
+  const navigate = useNavigate();
 
   if (loading) return <p>Loading ....</p>;
   if (error) return <p>Error. Please try again ....</p>;
 
-  const onSubmit = data => {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const doc = {
+      title: title,
+      body: body,
+      likes: 0,
+    };
+
+    await fetch("http://localhost:8000/posts", {
+      method: "POST",
+      body: JSON.stringify(doc),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    navigate("/")
     
-    console.log(data)};
+  };
+
 
   return (
     <>
       <h1>Create a New Blog</h1>
 
-      {/* <form>
-        <input type="text" name="title" required placeholder="Blog title" />
-        <textarea name="body" required placeholder="Blog body"></textarea>
-        <button type="button">Create</button>
-      </form> */}
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("title")} placeholder="Blog title" />
-        <input {...register("body")} placeholder="Blog body" />
-
-        <input type="submit" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          placeholder="Blog title"
+        />
+        <textarea
+          name="body"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          required
+          placeholder="Blog body"
+        ></textarea>
+        <button type="submit">Create</button>
       </form>
+
     </>
   );
 };
