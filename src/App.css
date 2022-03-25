@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+/* base styles */
+body {
+  background: #eee;
+  font-family: "Courier New", Courier, monospace;
+  color: #444;
+  max-width: 960px;
+  margin: 100px auto;
+  padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+nav h1 {
+  margin: 0;
+}
+
+nav a {
   color: white;
+  text-decoration: none;
+  background: #36cca2;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+form {
+  max-width: 500px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input,
+textarea {
+  display: block;
+  margin: 16px 0;
+  padding: 6px 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-family: "Courier New", Courier, monospace;
+}
+
+textarea {
+  min-height: 200px;
+}
+
+/* post list */
+.post {
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.post h2 {
+  margin: 0;
+}
+
+.post p {
+  margin-top: 0;
+}
+
+.post a {
+  color: #36cca2;
 }
