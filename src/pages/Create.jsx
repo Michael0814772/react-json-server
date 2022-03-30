@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const { loading, error } = useFetch("http://localhost:8000/posts/");
+  const { loading, error } = useFetch("https://my-json-database.herokuapp.com/posts/");
   const navigate = useNavigate();
 
   if (loading) return <p>Loading ....</p>;
@@ -21,7 +21,7 @@ const Create = () => {
       likes: 0,
     };
 
-    await fetch("http://localhost:8000/posts", {
+    await fetch("https://my-json-database.herokuapp.com/posts", {
       method: "POST",
       body: JSON.stringify(doc),
       headers: { "Content-Type": "application/json" },

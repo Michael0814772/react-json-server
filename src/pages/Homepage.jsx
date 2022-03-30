@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 
 const Homepage = () => {
 
-  const { loading, error, data } = useFetch("http://localhost:8000/posts?_sort=likes&_order=desc")
+  const { loading, error, data } = useFetch("https://my-json-database.herokuapp.com/posts?_sort=likes&_order=desc")
 
   if(loading) return <p>Loading ....</p>
   if(error) return <p>Error. Please try again ....</p>
